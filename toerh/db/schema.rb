@@ -11,11 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140206131530) do
+ActiveRecord::Schema.define(:version => 20140206220426) do
 
   create_table "api_keys", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.string   "access_token"
   end
 
   create_table "applications", :force => true do |t|
@@ -30,9 +31,9 @@ ActiveRecord::Schema.define(:version => 20140206131530) do
   end
 
   create_table "resource_types", :force => true do |t|
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-    t.string   "resource_type"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "type_name"
   end
 
   create_table "resources", :force => true do |t|
@@ -41,6 +42,9 @@ ActiveRecord::Schema.define(:version => 20140206131530) do
     t.integer  "resource_type_id"
     t.integer  "licence_id"
     t.integer  "user_id"
+    t.string   "name"
+    t.string   "description"
+    t.string   "url"
   end
 
   add_index "resources", ["licence_id"], :name => "index_resources_on_licence_id"

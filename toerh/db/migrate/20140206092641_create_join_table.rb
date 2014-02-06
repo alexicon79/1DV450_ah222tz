@@ -4,5 +4,7 @@ class CreateJoinTable < ActiveRecord::Migration
       t.integer :resource_id
       t.integer :tag_id
     end
+
+      add_index :resources_tags, ["resource_id", "tag_id"]
   end
 end

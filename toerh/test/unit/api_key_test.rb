@@ -2,9 +2,10 @@
 #
 # Table name: api_keys
 #
-#  id         :integer          not null, primary key
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id           :integer          not null, primary key
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  access_token :string(255)
 #
 
 require 'test_helper'

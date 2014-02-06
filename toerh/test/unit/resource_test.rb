@@ -8,7 +8,9 @@
 #  resource_type_id :integer
 #  licence_id       :integer
 #  user_id          :integer
-#  tag_id           :integer
+#  name             :string(255)
+#  description      :string(255)
+#  url              :string(255)
 #
 
 require 'test_helper'
