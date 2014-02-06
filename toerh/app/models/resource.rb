@@ -12,5 +12,9 @@
 #
 
 class Resource < ActiveRecord::Base
-  # attr_accessible :title, :body
+  attr_accessible :resource_type_id, :licence_id, :user_id, :tag_id
+  has_and_belongs_to_many :tags
+  belongs_to :resource_types
+  belongs_to :users
+  belongs_to :licences
 end

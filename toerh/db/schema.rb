@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140203095319) do
+ActiveRecord::Schema.define(:version => 20140206103247) do
 
   create_table "api_keys", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -24,13 +24,15 @@ ActiveRecord::Schema.define(:version => 20140203095319) do
   end
 
   create_table "licences", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.string   "licence_type"
   end
 
   create_table "resource_types", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.string   "resource_type"
   end
 
   create_table "resources", :force => true do |t|
@@ -47,10 +49,16 @@ ActiveRecord::Schema.define(:version => 20140203095319) do
   add_index "resources", ["tag_id"], :name => "index_resources_on_tag_id"
   add_index "resources", ["user_id"], :name => "index_resources_on_user_id"
 
+  create_table "resources_tags", :id => false, :force => true do |t|
+    t.integer "resource_id"
+    t.integer "tag_id"
+  end
+
   create_table "tags", :force => true do |t|
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.integer  "resource_id"
+    t.string   "tag_name"
   end
 
   add_index "tags", ["resource_id"], :name => "index_tags_on_resource_id"
@@ -58,6 +66,9 @@ ActiveRecord::Schema.define(:version => 20140203095319) do
   create_table "users", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "firstname"
+    t.string   "lastname"
+    t.string   "email"
   end
 
 end

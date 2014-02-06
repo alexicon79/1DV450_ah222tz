@@ -6,6 +6,7 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  resource_id :integer
+#  tag_name    :string(255)
 #
 
 require 'test_helper'

@@ -1,13 +1,27 @@
 module Api
   module V1
     class ResourcesController < ApplicationController
-      before_filter :restrict_access
-      respond_to :html, :json, :xml
+      #before_filter :restrict_access
+      respond_to :json, :xml
 
       def index
-        # @resources = Resource.find(:all, :order => 'created_at DESC')
-        @resources = {title: 'hej', body: 'body'}
-        respond_with @resources
+        respond_with Resource.all
+      end
+
+      def show
+        respond_with Resource.find(params[:id])
+      end
+
+      def create
+        respond_with Resource.create(params[:resource])
+      end
+
+      def update
+        respond_with Resource.update(params[:id], params[:resource])
+      end
+
+      def destroy
+        respond_with Resource.destroy(params[:id])
       end
 
       private
