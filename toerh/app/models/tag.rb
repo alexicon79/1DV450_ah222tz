@@ -10,6 +10,6 @@
 #
 
 class Tag < ActiveRecord::Base
-  attr_accessible :tag_name
+  attr_accessible :tag_name, :resource_id
   has_and_belongs_to_many :resources
 end

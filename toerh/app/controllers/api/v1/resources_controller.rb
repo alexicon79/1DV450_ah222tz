@@ -2,14 +2,14 @@ module Api
   module V1
     class ResourcesController < ApplicationController
       #before_filter :restrict_access
-      respond_to :json, :xml
+      respond_to :json
 
       def index
-        respond_with Resource.all
+        @resources = Resource.all
       end
 
       def show
-        respond_with Resource.find(params[:id])
+        @resource = Resource.find(params[:id])
       end
 
       def create

@@ -1,1 +1,12 @@
-<h1><%=@resources[:title]%></h1>
+<h1>test</h1>
+<% @resources.each do |resource| %>
+Resource type: <%= resource.resource_type.resource_type %> <br />
+Created by: <%= resource.user.firstname %> <%= resource.user.lastname %> <br/>
+Licence: <%= resource.licence.licence_type %> <br />
+Tags:
+<ul>
+  <% resource.tags.each do |tag| %>
+    <li><%= tag.tag_name %></li>
+  <% end %>
+</ul>
+<% end %>

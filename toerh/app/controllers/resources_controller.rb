@@ -1,13 +1,15 @@
-module Api
-  module V1
+
     class ResourcesController < ApplicationController
-      before_filter :restrict_access
-      respond_to :html, :json, :xml
+      #before_filter :restrict_access
+      respond_to :html, :json
 
       def index
-        # @resources = Resource.find(:all, :order => 'created_at DESC')
-        @resources = {title: 'hej', body: 'body'}
+        @resources = Resource.all
         respond_with @resources
+      end
+
+      def show
+        @resource = Resource.find(params[:id])
       end
 
       private
@@ -20,5 +22,4 @@ module Api
           #ApiKey.exists?(access_token: token)
       end
     end
-  end
-end
+
