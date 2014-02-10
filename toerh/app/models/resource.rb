@@ -19,4 +19,15 @@ class Resource < ActiveRecord::Base
   belongs_to :resource_type
   belongs_to :user
   belongs_to :licence
+  scope :none, where(:id => nil).where("id IS NOT ?", nil)
+
+        def get_resources_by_user_id_model
+        # return resources if param value is a number less than total amount of users
+        if params[:user].to_i <= User.all.count && params[:user].to_i != 0
+          return User.find(params[:user]).resources
+        else
+          return nil
+        end
+      end
+
 end
