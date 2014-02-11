@@ -2,14 +2,14 @@
 #
 # Table name: api_keys
 #
-#  id         :integer          not null, primary key
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id           :integer          not null, primary key
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  access_token :string(255)
 #
 
 class ApiKey < ActiveRecord::Base
-  # attr_accessible :title, :body
-  #
+  attr_accessible :access_token
   before_create :generate_access_token
 
   private

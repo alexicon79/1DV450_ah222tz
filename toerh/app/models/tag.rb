@@ -2,11 +2,10 @@
 #
 # Table name: tags
 #
-#  id          :integer          not null, primary key
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  resource_id :integer
-#  tag_name    :string(255)
+#  id         :integer          not null, primary key
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  tag_name   :string(255)
 #
 
 class Tag < ActiveRecord::Base

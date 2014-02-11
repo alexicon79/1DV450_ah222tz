@@ -1,3 +1,3 @@
 collection @resources
 
-extends "resources/show"
+extends "api/v1/resources/show"

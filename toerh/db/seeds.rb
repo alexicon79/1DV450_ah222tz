@@ -6,11 +6,29 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-  ResourceType.create([{resource_type: 'Image'}, {resource_type: 'Video'}, {resource_type: 'Article'}, {resource_type: 'Blogpost'}, {resource_type: 'Code'}])
-  Licence.create([{licence_type: 'CC'}, {licence_type: 'MIT'}, {licence_type: 'GNU'}])
-  User.create([{firstname: 'Alexander', lastname: 'Hall', email: 'ah222tz@student.lnu.se'}, {firstname: 'John', lastname: 'Doe', email: 'john@dodo.com'}, {firstname: 'Jane', lastname: 'Fonda'}])
-  Resource.create([{resource_type_id: 1, licence_id: 2, user_id: 1}])
-  t = Tag.create([{tag_name: 'RandomTag'}, {tag_name: 'SecondTag'}])
+  ApiKey.create!
 
-  r = Resource.first
-  r.tags << t
+  resource_type = ResourceType.create([{type_name: 'Image'}, {type_name: 'Video'}, {type_name: 'Article'}, {type_name: 'Blogpost'}, {type_name: 'Code'}])
+  licence = Licence.create([{licence_type: 'CC'}, {licence_type: 'MIT'}, {licence_type: 'GNU'}])
+
+  20.times do
+    firstname = Faker::Name.first_name
+    lastname = Faker::Name.last_name
+    email = Faker::Internet.email
+
+    user = User.create({firstname: firstname, lastname: lastname, email: email})
+
+    type_id = rand(1..5)
+    licence_id = rand(1..3)
+    user_id = rand(1..10)
+    name = Faker::Lorem.words(2).join(" ")
+    description = Faker::Lorem.words(6).join(" ")
+    url = Faker::Internet.url
+
+    resource = Resource.create({resource_type_id: type_id, licence_id: licence_id, user_id: user_id, name: name, description: description, url: url})
+
+    tag1 = Tag.create({tag_name: Faker::Lorem.word})
+    tag2 = Tag.create({tag_name: Faker::Lorem.word})
+    resource.tags << tag1
+    resource.tags << tag2
+  end
