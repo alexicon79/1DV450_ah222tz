@@ -4,13 +4,12 @@ class FilteredResourcesController < ActionController::Base
   @@user = false
   @@licence = false
   @@tag = false
-
-  @@filter_true = "true"
+  @@filter = "true"
 
   protected
 
   def apply_filters
-    if params[:filter].present? && params[:filter].downcase == @@filter_true
+    if params[:filter].present? && params[:filter].downcase == @@filter
       if params[:user].present?
         @@user = true
       end
@@ -26,8 +25,8 @@ class FilteredResourcesController < ActionController::Base
   end
 
   def get_filtered_resources
-    @param_count = params.except(:action, :format, :controller).length
-    @temp_resources = Resource.all
+    @param_count = params.except(:offset, :limit, :action, :format, :controller).length
+    temp_resources = Resource.all
 
     if @@all
       temp_resources = Resource.all
@@ -35,25 +34,38 @@ class FilteredResourcesController < ActionController::Base
     end
 
     if @@user
-      @temp_resources += get_resources_by_user
+      temp_resources += get_resources_by_user
       @@user = false
     end
 
     if @@licence
-      @temp_resources += get_resources_by_licence
+      temp_resources += get_resources_by_licence
       @@licence = false
     end
 
     if @@tag
-      @temp_resources += get_resources_by_tag
+      temp_resources += get_resources_by_tag
       @@tag = false
     end
 
     if filters_are_set && @param_count > 1
-      @temp_resources = apply_multiple_filters @temp_resources
+      temp_resources = apply_multiple_filters(temp_resources)
     end
 
-    return @temp_resources
+    if params[:limit].present?
+      limit = params[:limit].to_i
+      if params[:offset].present?
+        offset = params[:offset].to_i
+        temp_resources_with_limit_and_offset = temp_resources[offset, limit]
+        return temp_resources_with_limit_and_offset
+      else
+        temp_resources_with_limit = temp_resources.first(limit)
+        return temp_resources_with_limit
+      end
+    end
+
+    return temp_resources
+
   end
 
   def apply_multiple_filters(temp_resources)
@@ -65,7 +77,7 @@ class FilteredResourcesController < ActionController::Base
       temp_resource_ids << resource.id
     end
 
-    repeats = temp_resource_ids.length - temp_resource_ids.uniq.length
+    #repeats = temp_resource_ids.length - temp_resource_ids.uniq.length
 
     h = Hash.new(0)
     temp_resource_ids.each { | v | h.store(v, h[v]+1) }
@@ -81,10 +93,23 @@ class FilteredResourcesController < ActionController::Base
     end
 
     # logger.debug "HOW MANY SHOULD BE SHOWN: #{repeats}"
+
     # logger.debug "DUPLICATES: #{h}"
     # logger.debug "RESOURCES: #{temp_key_array}"
 
-    return filtered_resources
+    if params[:limit].present?
+      limit = params[:limit].to_i
+      if params[:offset].present?
+        offset = params[:offset].to_i
+        filtered_resources_with_limit_and_offset = filtered_resources[offset, limit]
+        return filtered_resources_with_limit_and_offset
+      else
+        filtered_resources_with_limit = filtered_resources.take(limit)
+        return filtered_resources_with_limit
+      end
+    else
+      return filtered_resources
+    end
   end
 
 
