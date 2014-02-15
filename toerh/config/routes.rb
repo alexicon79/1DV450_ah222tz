@@ -6,7 +6,9 @@ Toerh::Application.routes.draw do
       resources :users
       resources :tags
       resources :licences
-      resources :resource_types
+
+      match 'tags/:id/resources' => 'tags#tag_resources'
+      match 'users/:id/resources' => 'users#user_resources'
     end
   end
 
