@@ -1,0 +1,4 @@
+<h1>Register your application</h1>
+<% @apps.each do |app| %>
+<%= app.contact_email %> :: <%= app.api_key.access_token %>
+<% end %>
