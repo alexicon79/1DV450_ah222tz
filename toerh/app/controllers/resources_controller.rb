@@ -1,7 +1,7 @@
 
     class ResourcesController < ApplicationController
       #before_filter :restrict_access
-      respond_to :html, :json
+      respond_to :html, :json, :xml
 
       def index
         @resources = Resource.all

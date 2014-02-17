@@ -4,6 +4,7 @@ class FilteredResourcesController < ActionController::Base
   @@user = false
   @@licence = false
   @@tag = false
+  @@type = false
   @@filter = "true"
 
   protected
@@ -18,6 +19,9 @@ class FilteredResourcesController < ActionController::Base
       end
       if params[:tag].present?
         @@tag = true
+      end
+      if params[:type].present?
+        @@type = true
       end
     else
       @@all = true
@@ -46,6 +50,11 @@ class FilteredResourcesController < ActionController::Base
     if @@tag
       temp_resources += get_resources_by_tag
       @@tag = false
+    end
+
+    if @@type
+      temp_resources += get_resources_by_type
+      @@type = false
     end
 
     if filters_are_set && @param_count > 1
@@ -158,6 +167,10 @@ class FilteredResourcesController < ActionController::Base
     else
       return Resource.none
     end
+  end
+
+  def get_resources_by_type
+    # return resources by tag_id if param value is a number less than total amount of tags
   end
 
 end

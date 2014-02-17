@@ -1,14 +1,17 @@
 module Api
   module V1
     class ResourcesController < FilteredResourcesController
-      #before_filter :restrict_access
-      respond_to :json
+      before_filter :restrict_access
+      #respond_to :xml
 
       def index
         apply_filters
 
         if filters_are_set
           @resources = get_filtered_resources
+          if @resources.size == 0
+            render :status => 404
+          end
         else
           @resources = Resource.all
         end

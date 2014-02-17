@@ -13,6 +13,11 @@ Toerh::Application.routes.draw do
   end
 
   resources :resources
+  resources :users
+  resources :applications
+
+  #match 'register' => 'applications#index'
+
   root :to => 'resources#index'
 
   # The priority is based upon order of creation:
