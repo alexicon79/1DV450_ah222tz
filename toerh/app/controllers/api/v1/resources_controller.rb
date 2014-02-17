@@ -1,7 +1,9 @@
 module Api
   module V1
     class ResourcesController < FilteredResourcesController
-      before_filter :restrict_access
+      #before_filter :restrict_access
+      #http_basic_authenticate_with name: "dhh", password: "secret", except: :index
+      before_filter :http_basic_authenticate, :except => [:index]
       #respond_to :xml
 
       def index
@@ -15,7 +17,6 @@ module Api
         else
           @resources = Resource.all
         end
-
       end
 
       def show
@@ -40,6 +41,13 @@ module Api
       def restrict_access
         authenticate_or_request_with_http_token do |token, options|
           ApiKey.exists?(access_token: token)
+        end
+      end
+
+      def http_basic_authenticate
+        authenticate_or_request_with_http_basic do |username, password|
+          @user = User.find_by_username(username)
+          @user.authenticate(password)
         end
       end
 

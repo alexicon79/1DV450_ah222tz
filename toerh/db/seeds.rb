@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-  ApiKey.create!
+
 
   resource_type = ResourceType.create([{type_name: 'Image'}, {type_name: 'Video'}, {type_name: 'Article'}, {type_name: 'Blogpost'}, {type_name: 'Code'}])
   licence = Licence.create([{licence_type: 'CC'}, {licence_type: 'MIT'}, {licence_type: 'GNU'}])
@@ -15,8 +15,10 @@
     firstname = Faker::Name.first_name
     lastname = Faker::Name.last_name
     email = Faker::Internet.email
+    username = Faker::Internet.user_name
+    password = "password"
 
-    user = User.create({firstname: firstname, lastname: lastname, email: email})
+    user = User.create({firstname: firstname, lastname: lastname, username: username, email: email, password: password, password_confirmation: password})
 
     type_id = rand(1..5)
     licence_id = rand(1..3)
