@@ -15,6 +15,7 @@
 class User < ActiveRecord::Base
   has_secure_password
   attr_accessible :firstname, :lastname, :username, :email, :password, :password_confirmation
+
   has_many :resources
 
   validates :username, presence: true, length: { minimum: 3, maximum: 25 }
