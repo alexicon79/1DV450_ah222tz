@@ -1,11 +1,25 @@
 Prio:
 
-- API:et ska kunna kunna anropas på så sätt att man kan välja en "offset" och "limit" av resurser
-- Logga in och därmed posta nya resurser, ändra sina befintliga resurser, ta bort sina befintliga resurser
+((- Logga in och därmed posta nya resurser, ändra sina befintliga resurser, ta bort sina befintliga resurser))
+
+(- http basic auth)
+- create, update, delete functionality
+- documentation!!
+- further fix with registration
+- XML
+
+
+- heroku!
+
+- - - -
+
 - Registrering API-nycket (separat app?)
 - felkoder och felmeddelanden
 - Implementera XML (rabl)
 - Till API:et ska en dokumentation skrivas som vänder sig mot målgruppen webbutvecklare
+
+
+- API:et ska kunna kunna anropas på så sätt att man kan välja en "offset" och "limit" av resurser @done
 
 
 KRAV

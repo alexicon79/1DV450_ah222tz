@@ -14,7 +14,7 @@
 #
 
 class Resource < ActiveRecord::Base
-  attr_accessible :resource_type_id, :licence_id, :user_id, :tag_id, :name, :description, :url
+  attr_accessible :resource_type_id, :licence_id, :user_id, :tag_id, :name, :description, :url, :tags
   has_and_belongs_to_many :tags
   belongs_to :resource_type
   belongs_to :user
@@ -23,7 +23,6 @@ class Resource < ActiveRecord::Base
 
   #validates_presence_of :user
   #validates_presence_of :resource_type
-  #validates_presence_of :licence
 
   #validates :url, presence: true
 

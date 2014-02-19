@@ -58,6 +58,8 @@ ActiveRecord::Schema.define(:version => 20140217215550) do
     t.integer "tag_id"
   end
 
+  add_index "resources_tags", ["resource_id", "tag_id"], :name => "index_resources_tags_on_resource_id_and_tag_id"
+
   create_table "tags", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false

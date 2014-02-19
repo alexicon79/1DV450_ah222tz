@@ -13,15 +13,14 @@
 #
 
 class User < ActiveRecord::Base
+  has_secure_password
   attr_accessible :firstname, :lastname, :username, :email, :password, :password_confirmation
   has_many :resources
-  has_secure_password
 
   validates :username, presence: true, length: { minimum: 3, maximum: 25 }
   validates_uniqueness_of :username
 
-  validates_presence_of :password, on: :create
-  validates_length_of :password, minimum: 5
+  validates :password, presence: { on: :create }, length: { minimum: 5 }
 
   validates :email, presence: true, uniqueness: true
 end

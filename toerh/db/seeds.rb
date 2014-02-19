@@ -7,7 +7,6 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-
   resource_type = ResourceType.create([{type_name: 'Image'}, {type_name: 'Video'}, {type_name: 'Article'}, {type_name: 'Blogpost'}, {type_name: 'Code'}])
   licence = Licence.create([{licence_type: 'CC'}, {licence_type: 'MIT'}, {licence_type: 'GNU'}])
 
