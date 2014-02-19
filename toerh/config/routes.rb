@@ -16,7 +16,7 @@ Toerh::Application.routes.draw do
   resources :users
   resources :applications
 
-  #match 'register' => 'applications#index'
+  match 'register' => 'applications#new'
 
   root :to => 'resources#index'
 

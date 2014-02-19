@@ -8,7 +8,7 @@ code :info do |resource|
               :description => resource.description,
               :url => resource.url,
               :resourceType => resource.resource_type.type_name,
-              :licence => resource.licence.licence_type
+              :licence => resource.licence.licence_type.upcase
 end
 
 code :publisher do |resource|

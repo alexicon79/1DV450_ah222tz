@@ -14,6 +14,9 @@ class ApiKey < ActiveRecord::Base
   before_create :generate_access_token
   belongs_to :application
 
+  validates_presence_of :application
+  validates_uniqueness_of :access_token
+
   private
 
   def generate_access_token

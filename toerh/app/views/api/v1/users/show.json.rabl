@@ -6,6 +6,6 @@ node(:created) { |user| user.created_at }
 code :info do |user|
   attributes  :firstName => user.firstname,
               :lastName => user.lastname,
+              :userName => user.username,
               :email => user.email
 end
-

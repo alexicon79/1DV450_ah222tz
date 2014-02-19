@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140216205353) do
+ActiveRecord::Schema.define(:version => 20140217215550) do
 
   create_table "api_keys", :force => true do |t|
     t.datetime "created_at",     :null => false
@@ -58,6 +58,8 @@ ActiveRecord::Schema.define(:version => 20140216205353) do
     t.integer "tag_id"
   end
 
+  add_index "resources_tags", ["resource_id", "tag_id"], :name => "index_resources_tags_on_resource_id_and_tag_id"
+
   create_table "tags", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
@@ -65,11 +67,13 @@ ActiveRecord::Schema.define(:version => 20140216205353) do
   end
 
   create_table "users", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
     t.string   "firstname"
     t.string   "lastname"
     t.string   "email"
+    t.string   "username"
+    t.string   "password_digest"
   end
 
 end
