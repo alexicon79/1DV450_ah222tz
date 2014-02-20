@@ -23,7 +23,7 @@ end
 gem 'jquery-rails'
 gem 'rabl'
 
-group :test, :development do
+group :test, :development, :production do
   gem 'faker'
   gem 'annotate', ">=2.6.0"
 end
