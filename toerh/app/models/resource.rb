@@ -21,10 +21,12 @@ class Resource < ActiveRecord::Base
   belongs_to :licence
   scope :none, where(:id => nil).where("id IS NOT ?", nil)
 
-  #validates_presence_of :user
-  #validates_presence_of :resource_type
+  validates :user_id, presence: :true
+  validates :resource_type_id, presence: true
+  validates :licence_id, presence: true
 
-  #validates :url, presence: true
+  validates :url, presence: true
 
-  #validates :name, presence: true, length: { maximum: 120 }
+  validates :name, presence: true, length: { maximum: 60 }
+  validates :name, presence: true, length: { maximum: 255 }
 end

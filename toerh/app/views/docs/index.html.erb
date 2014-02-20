@@ -1,0 +1,142 @@
+<div class="wrapper">
+  <h2>Alexander Hall - 1DV450</h2>
+  <h1>TOERH</h1>
+  <h2 class="sub_caption">- The Open Education Resource Handler</h2>
+
+  <p>TOERH is an API for open education resource handling. Users can request information about available resources, as well as filter resources by type, licence, owner, tags, etc. Only registered users may create, update and delete resources.</p>
+
+  <p>The API is currently available at <a href="http://alx-toerh.herokuapp.com/api/v1/">http://alx-toerh.herokuapp.com/api/v1/</a>.</p>
+  <p>In order to access the API you must first register to receive a valid API-key.</p>
+
+  <h2>How to register for an API-key</h2>
+  <p>1. Go to <a href="http://alx-toerh.herokuapp.com/register">http://alx-toerh.herokuapp.com/register</a><br />
+  2. Enter a valid contact email address.<br />
+  3. Copy your generated API-key and store it in a safe place.<br /></p>
+
+  <h2>Authorization</h2>
+
+  <p>Attach your API-key to the HTTP-header in this format:</p>
+  <pre>
+  Authorization: Token token="257b082c2d0c1c10ff34ee0ec6ad803d"
+  </pre>
+  <p><em>(Remember to change the example token above to your actual key)</em></p>
+
+  <h3>Post, update, delete</h3>
+  <p>Only registered users (not the same as having a valid API-key) are allowed to post, update and delete resources. In order to do identify yourself you need to fill in valid credentials (Basic HTTP Authentication) when performing actions requiring authorization.</p>
+
+  <p>There is a demo user account if you want to try this out:</p>
+  <pre>
+  Username: guest
+  Password: guest
+  </pre>
+
+  <p>TIP: Postman (Chrome plugin) is a highly recommended service for trying out the API in different ways. It supports sending required headers and has a simple and intuitive interface.</p>
+
+  <h2>Using the API</h2>
+
+  <h3>Formats</h3>
+
+  <p>The API supports JSON and XML, with JSON being the standard - and recommended - format. To get data as XML just append .xml to the url.</p>
+
+  <h3>Endpoints</h3>
+  <ul>
+  <li><a href="http://alx-toerh.herokuapp.com/api/v1/resources">http://alx-toerh.herokuapp.com/api/v1/resources</a> - get available resources (default - allows filtering).</li>
+
+  <li><a href="http://alx-toerh.herokuapp.com/api/v1/users">http://alx-toerh.herokuapp.com/api/v1/users</a> - get available users.</li>
+
+  <li><a href="http://alx-toerh.herokuapp.com/api/v1/tags">http://alx-toerh.herokuapp.com/api/v1/tags</a> - get available tags.</li>
+
+  <li><a href="http://alx-toerh.herokuapp.com/api/v1/licences">http://alx-toerh.herokuapp.com/api/v1/licences</a> - get available licences.</li>
+
+  </ul>
+
+  <h3>REST in peace</h3>
+  <p>To get resource with id 3, you can simply write:</p>
+  <pre>
+  .../resources/3
+  </pre>
+
+  <p>To get all resources belonging to user with id 3 (and don't want to use filters), you can access the API through the users endpoint and add "resources" after the id:
+  <pre>
+  .../users/3/resources
+  </pre>
+
+  <p>Similar url structure is applied for licences and tags:</p>
+  <pre>
+  ...ces/3/resources
+  </pre>
+  <pre>
+  .../tags/3/resources
+  </pre>
+
+  <h3>Filtering</h3>
+  <p>(Only available through the resources endpoint)</p>
+  <p>You can filter resources by licence, type, tag (by either id or string) and user (only id). To allow filtering you just append "?filter=true" to the url, and then pass your parameters. Like so:</p>
+
+  <pre>
+  .../resources?filter=true&amp;parameter=value
+  </pre>
+
+  <h4>Examples:</h4>
+
+  <p>Get all resources with MIT licence:<br/>
+
+  <pre>
+  ../resources?filter=true&amp;licence=mit
+  </pre>
+
+  <p>Get all resources with tag "happy":</p>
+
+  <pre>
+  .../resources?filter=true&amp;tag=happy
+  </pre>
+
+  <p>Get first video-type resource with an GNU licence, with the tag "est", by user with id nr. 4 (currently, users can only be filtered by id):</p>
+
+  <pre>
+  ../resources?filter=true&amp;type=video&amp;licence=GNU&amp;tag=est&amp;user=4
+  </pre>
+
+  <h3>Offset and limit</h3>
+  <p>You can limit the amount of results by passing a limit parameter:</p>
+  <pre>
+  .../resources?limit=3
+  </pre>
+  <p>You can also limit your filtered results:</p>
+  <pre>
+  .../resources?filter=true&amp;user=2&amp;limit=2
+  </pre>
+  <p>To set an offset to your limited results just pass an offset parameter:</p>
+  <pre>
+  .../resources?limit=10&amp;offset=5
+  </pre>
+  <h3>Create or update</h3>
+  <p>The parameters that need to be included when creating (POST) or updating (PUT) a resource through the API are:
+    <pre>
+#  resource_type_id      :integer
+#  licence_id            :integer
+#  user_id               :integer
+#  name                  :string (max 60 characters)
+#  description           :string (max 255 characters)
+#  url                   :string
+#  tag[]                 :string (optional, must include [] if more than one tag)
+    </pre>
+  <p>User:</p>
+  <pre>
+#  firstname             :string
+#  lastname              :string
+#  email                 :string
+#  username              :string (min 3, max 25 characters)
+#  password              :string (min 5 characters)
+#  password_confirmation :string (min 5 characters)
+  </pre>
+  <p>Tag:</p>
+  <pre>
+#  tag_name              :string
+  </pre>
+  <p>Licence:</p>
+  <pre>
+#  licence_type          :string
+  </pre>
+
+</div>

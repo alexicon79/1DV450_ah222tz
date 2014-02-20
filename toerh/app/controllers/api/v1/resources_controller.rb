@@ -1,14 +1,15 @@
 module Api
   module V1
     class ResourcesController < FilteredResourcesController
-      #before_filter :restrict_access
+      #before_filter :restrict_access #only allow requests with API-key
       skip_before_filter :verify_authenticity_token
-      before_filter :http_basic_authenticate, :except => [:index, :show]
+      before_filter :http_basic_authenticate, :except => [:index, :show] #user auth to post, create, delete
       respond_to :xml, :json
 
       def index
         apply_filters
 
+        #get filtered resources if filters are set
         if filters_are_set
           @resources = get_filtered_resources
           if @resources.size == 0
@@ -33,11 +34,9 @@ module Api
 
       def create
         @resource = Resource.new(params[:resource])
-
+        append_tags
         respond_to do |format|
           if @resource.save
-            append_tags
-
             format.json { render json: "Resource has been added", status: :created }
             format.xml { render xml: "Resource has been added", status: :created }
           else
@@ -68,22 +67,17 @@ module Api
         end
       end
 
-
-      private
-
+    private
 
       def append_tags
-        #if params[:tags].respond_to?('each')
-          params[:tags].each do |tag_name|
-            tag_name.downcase!
-            @resource.tags << get_tag(tag_name)
+        tags = []
+        tags = params[:tag]
+        if tags
+          tags.each do |tag_name|
+            tag = Tag.create({tag_name: tag_name})
+            @resource.tags << tag
           end
-        #end
-      end
-
-      def get_tag(tag_name)
-        #Tag.find_by_tag_name(tag_name) || Tag.create(tag_name: tag_name)
-        Tag.create(tag_name: tag_name)
+        end
       end
 
       def restrict_access

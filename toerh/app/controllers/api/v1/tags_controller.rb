@@ -3,7 +3,7 @@ module Api
     class TagsController < ApplicationController
       #before_filter :restrict_access
       skip_before_filter :verify_authenticity_token
-      before_filter :http_basic_authenticate, :except => [:index, :show]
+      before_filter :http_basic_authenticate, :except => [:index, :show, :tag_resources]
       respond_to :json, :xml
 
       def index
@@ -57,7 +57,7 @@ module Api
       end
 
       def tag_resources
-        @resources = Tag.find_by_id(params[:id]).resources
+        @resources = Tag.find(params[:id]).resources
       end
 
       private

@@ -9,6 +9,9 @@ Toerh::Application.routes.draw do
 
       match 'tags/:id/resources' => 'tags#tag_resources'
       match 'users/:id/resources' => 'users#user_resources'
+      match 'licences/:id/resources' => 'licences#licence_resources'
+
+      root :to => 'resources#index'
     end
   end
 
@@ -18,7 +21,13 @@ Toerh::Application.routes.draw do
 
   match 'register' => 'applications#new'
 
-  root :to => 'resources#index'
+  controller :sessions do
+    get 'login' => :new
+    post 'login' => :create
+    delete 'logout' => :destroy
+  end
+
+  root :to => 'docs#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

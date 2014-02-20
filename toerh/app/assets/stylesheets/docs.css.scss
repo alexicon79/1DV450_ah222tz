@@ -1,8 +1,10 @@
-// Place all the styles related to the applications controller here.
+// Place all the styles related to the docs controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.applications {
-  div.wrapper {
+
+.docs {
+
+  .wrapper {
     padding: 10px 280px;
     font-family: "Helvetica";
     line-height: 1.6em;
@@ -36,12 +38,6 @@
     font-style: italic;
   }
 
-  p.sign_out {
-    position: relative;
-    float: right;
-    top: 34px;
-  }
-
   pre {
     padding: 20px 20px 0 20px;
     background-color: #eee;
@@ -56,10 +52,7 @@
   }
 
   li {
-    list-style: none;
-    margin-left: -40px;
-    border-bottom: 1px dashed #eee;
+    list-style:decimal;
   }
-
 
 }

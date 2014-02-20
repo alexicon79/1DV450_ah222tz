@@ -7,8 +7,10 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-  resource_type = ResourceType.create([{type_name: 'Image'}, {type_name: 'Video'}, {type_name: 'Article'}, {type_name: 'Blogpost'}, {type_name: 'Code'}])
-  licence = Licence.create([{licence_type: 'CC'}, {licence_type: 'MIT'}, {licence_type: 'GNU'}])
+    resource_type = ResourceType.create([{type_name: 'Image'}, {type_name: 'Video'}, {type_name: 'Article'}, {type_name: 'Blogpost'}, {type_name: 'Code'}])
+    licence = Licence.create([{licence_type: 'CC'}, {licence_type: 'MIT'}, {licence_type: 'GNU'}])
+    admin = User.create({firstname: 'Alexander', lastname: 'Hall', username: 'admin', email: 'admin@example.com', password: 'admin', password_confirmation: 'admin'})
+    demo_user = User.create({firstname: 'guest', lastname: 'guest', username: 'guest', email: 'demo@example.com', password: 'guest', password_confirmation: 'guest'})
 
   20.times do
     firstname = Faker::Name.first_name

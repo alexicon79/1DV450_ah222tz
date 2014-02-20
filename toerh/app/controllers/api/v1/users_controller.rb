@@ -3,7 +3,7 @@ module Api
     class UsersController < ApplicationController
       #before_filter :restrict_access
       skip_before_filter :verify_authenticity_token
-      before_filter :http_basic_authenticate, :except => [:index, :show]
+      before_filter :http_basic_authenticate, :except => [:index, :show, :user_resources]
       respond_to :json, :xml
 
       def index

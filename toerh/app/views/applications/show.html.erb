@@ -3,4 +3,6 @@
   <strong>Your API-token: </strong><pre><%= notice %></pre>
   <p>Be sure to save your API-token, this page is only temporary visible.</p>
 <% else %>
+  <h2>Restricted access</h2>
+  <p><%= link_to "Register a new application", new_application_path %> </p>
 <% end %>
