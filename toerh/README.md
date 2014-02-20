@@ -50,18 +50,25 @@ The API supports JSON and XML, with JSON being the standard (and recommended) fo
 
 To get resource with id 3, you can simply write:
 
-```.../resources/3```
+```
+.../resources/3
 
+```
 
 To get all resources belonging to user with id 3 (and don't want to use filters), you can access the API through the users endpoint and add "resources" after the id:
 
-```.../users/3/resources```
+```
+.../users/3/resources
+
+```
 
 
 Similar url structure is applied for licences and tags:
+
 ```
 ...licences/3/resources
 .../tags/3/resources
+
 ```
 
 ###Filtering
@@ -69,41 +76,62 @@ Similar url structure is applied for licences and tags:
 
 You can filter resources by licence, type, tag (by either id or string) and user (only id). To allow filtering you just append "?filter=true" to the url, and then pass your parameters. Like so:
 
-```.../resources?filter=true&parameter=value```
+```
+.../resources?filter=true&parameter=value
+
+```
 
 
 ####Examples:
 
 Get all resources with MIT licence:
 
-```.../resources?filter=true&licence=mit```
+```
+.../resources?filter=true&licence=mit
+
+```
 
 
 Get all resources with tag "happy":
 
-```.../resources?filter=true&tag=happy```
+```
+.../resources?filter=true&tag=happy
+
+```
 
 
 Get first video-type resource with an GNU licence, with the tag "est", by user with id nr. 4 (currently, users can only be filtered by id):
 
-```.../resources?filter=true&type=video&licence=GNU&tag=est&user=4```
+```
+.../resources?filter=true&type=video&licence=GNU&tag=est&user=4
+
+```
 
 
 ### Offset and limit
 
 You can limit the amount of results by passing a limit parameter:
 
-```.../resources?limit=3```
+```
+.../resources?limit=3
+
+```
 
 
 You can also limit your filtered results:
 
-```.../resources?filter=true&user=2&limit=2```
+```
+.../resources?filter=true&user=2&limit=2
+
+```
 
 
 To set an offset to your limited results just pass an offset parameter:
 
-```.../resources?limit=10&offset=5```
+```
+.../resources?limit=10&offset=5
+
+```
 
 
 ### Create or update - parameters
@@ -111,32 +139,36 @@ To set an offset to your limited results just pass an offset parameter:
 The parameters that need to be included when creating (POST) or updating (PUT) a resource through the API are:
 
 ```
-  #  resource_type_id      :integer
-  #  licence_id            :integer
-  #  user_id               :integer
-  #  name                  :string (max 60 characters)
-  #  description           :string (max 255 characters)
-  #  url                   :string
-  #  tag[]                 :string (optional, must include [] if more than one tag)
+#  resource_type_id      :integer
+#  licence_id            :integer
+#  user_id               :integer
+#  name                  :string (max 60 characters)
+#  description           :string (max 255 characters)
+#  url                   :string
+#  tag[]                 :string (optional, must include [] if more than one tag)
 ```
 
 User:
 
 ```
-  #  firstname             :string
-  #  lastname              :string
-  #  email                 :string
-  #  username              :string (min 3, max 25 characters)
-  #  password              :string (min 5 characters)
-  #  password_confirmation :string (min 5 characters)
+#  firstname             :string
+#  lastname              :string
+#  email                 :string
+#  username              :string (min 3, max 25 characters)
+#  password              :string (min 5 characters)
+#  password_confirmation :string (min 5 characters)
 ```
 
 Tag:
+
 ```
-  #  tag_name              :string
+#  tag_name              :string
+
 ```
 
 Licence:
+
 ```
-  #  licence_type          :string
+#  licence_type          :string
+
 ```
