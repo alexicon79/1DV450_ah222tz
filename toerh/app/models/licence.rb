@@ -16,7 +16,7 @@ class Licence < ActiveRecord::Base
   validates_presence_of :licence_type
   validates_uniqueness_of :licence_type
 
-  protected
+  private
 
   def to_lower_case
     unless self.licence_type.nil?
