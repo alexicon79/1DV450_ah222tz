@@ -20,7 +20,7 @@ How to register for an API-key
 
 Attach your API-key to the HTTP-header in this format:
 
-  Authorization: Token token="257b082c2d0c1c10ff34ee0ec6ad803d"
+```Authorization: Token token="257b082c2d0c1c10ff34ee0ec6ad803d"```
 
 (Remember to change the example token above to your actual key)
 
