@@ -18,7 +18,11 @@ In order to access the API you must first register to receive a valid API-key.
 
 Attach your API-key to the HTTP-header in this format:
 
-```Authorization: Token token="257b082c2d0c1c10ff34ee0ec6ad803d"```
+```
+
+Authorization: Token token="257b082c2d0c1c10ff34ee0ec6ad803d"
+
+```
 
 (Remember to change the example token above to your actual key)
 
@@ -27,9 +31,12 @@ Attach your API-key to the HTTP-header in this format:
 Only registered users (not the same as having a valid API-key) are allowed to create, update and delete resources. In order to do identify yourself you need to fill in valid credentials (Basic HTTP Authentication) when performing actions requiring authorization.
 
 There is a demo user account if you want to try this out:
+
 ```
+
   Username: guest
   Password: guest
+
 ```
 
 TIP: Postman (Chrome plugin) is a highly recommended service for trying out the API in different ways. It supports sending required headers and has a simple and intuitive interface.
@@ -51,6 +58,7 @@ The API supports JSON and XML, with JSON being the standard (and recommended) fo
 To get resource with id 3, you can simply write:
 
 ```
+
 .../resources/3
 
 ```
@@ -58,6 +66,7 @@ To get resource with id 3, you can simply write:
 To get all resources belonging to user with id 3 (and don't want to use filters), you can access the API through the users endpoint and add "resources" after the id:
 
 ```
+
 .../users/3/resources
 
 ```
@@ -66,6 +75,7 @@ To get all resources belonging to user with id 3 (and don't want to use filters)
 Similar url structure is applied for licences and tags:
 
 ```
+
 ...licences/3/resources
 .../tags/3/resources
 
@@ -77,6 +87,7 @@ Similar url structure is applied for licences and tags:
 You can filter resources by licence, type, tag (by either id or string) and user (only id). To allow filtering you just append "?filter=true" to the url, and then pass your parameters. Like so:
 
 ```
+
 .../resources?filter=true&parameter=value
 
 ```
@@ -87,6 +98,7 @@ You can filter resources by licence, type, tag (by either id or string) and user
 Get all resources with MIT licence:
 
 ```
+
 .../resources?filter=true&licence=mit
 
 ```
@@ -95,6 +107,7 @@ Get all resources with MIT licence:
 Get all resources with tag "happy":
 
 ```
+
 .../resources?filter=true&tag=happy
 
 ```
@@ -103,6 +116,7 @@ Get all resources with tag "happy":
 Get first video-type resource with an GNU licence, with the tag "est", by user with id nr. 4 (currently, users can only be filtered by id):
 
 ```
+
 .../resources?filter=true&type=video&licence=GNU&tag=est&user=4
 
 ```
@@ -113,6 +127,7 @@ Get first video-type resource with an GNU licence, with the tag "est", by user w
 You can limit the amount of results by passing a limit parameter:
 
 ```
+
 .../resources?limit=3
 
 ```
@@ -121,6 +136,7 @@ You can limit the amount of results by passing a limit parameter:
 You can also limit your filtered results:
 
 ```
+
 .../resources?filter=true&user=2&limit=2
 
 ```
@@ -129,6 +145,7 @@ You can also limit your filtered results:
 To set an offset to your limited results just pass an offset parameter:
 
 ```
+
 .../resources?limit=10&offset=5
 
 ```
@@ -139,6 +156,7 @@ To set an offset to your limited results just pass an offset parameter:
 The parameters that need to be included when creating (POST) or updating (PUT) a resource through the API are:
 
 ```
+
 #  resource_type_id      :integer
 #  licence_id            :integer
 #  user_id               :integer
@@ -146,22 +164,26 @@ The parameters that need to be included when creating (POST) or updating (PUT) a
 #  description           :string (max 255 characters)
 #  url                   :string
 #  tag[]                 :string (optional, must include [] if more than one tag)
+
 ```
 
 User:
 
 ```
+
 #  firstname             :string
 #  lastname              :string
 #  email                 :string
 #  username              :string (min 3, max 25 characters)
 #  password              :string (min 5 characters)
 #  password_confirmation :string (min 5 characters)
+
 ```
 
 Tag:
 
 ```
+
 #  tag_name              :string
 
 ```
@@ -169,6 +191,7 @@ Tag:
 Licence:
 
 ```
+
 #  licence_type          :string
 
 ```
