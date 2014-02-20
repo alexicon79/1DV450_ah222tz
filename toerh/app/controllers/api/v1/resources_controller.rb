@@ -1,7 +1,7 @@
 module Api
   module V1
     class ResourcesController < FilteredResourcesController
-      #before_filter :restrict_access #only allow requests with API-key
+      before_filter :restrict_access #only allow requests with API-key
       skip_before_filter :verify_authenticity_token
       before_filter :http_basic_authenticate, :except => [:index, :show] #user auth to post, create, delete
       respond_to :xml, :json
