@@ -1,6 +1,6 @@
 module Api
   module V1
-    class FilteredResourcesController < ActionController::Base
+    class FilteredResourcesController < ApiController
 
       @@all = false
       @@user = false

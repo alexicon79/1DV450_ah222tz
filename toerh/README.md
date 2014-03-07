@@ -14,13 +14,13 @@ In order to access the API you must first register to receive a valid API-key.
 2. Enter a valid contact email address.
 3. Copy your generated API-key and store it in a safe place.
 
-##Authorization
+##Authentication / Authorization
 
 Attach your API-key to the HTTP-header in this format:
 
 ```
 
-Authorization: Token token="257b082c2d0c1c10ff34ee0ec6ad803d"
+X-AUTH-TOKEN: 257b082c2d0c1c10ff34ee0ec6ad803d
 
 ```
 
@@ -39,7 +39,19 @@ There is a demo user account if you want to try this out:
 
 ```
 
-TIP: Postman (Chrome plugin) is a highly recommended service for trying out the API in different ways. It supports sending required headers and has a simple and intuitive interface.
+### Authorization through Postman
+
+Postman (Chrome plugin) is a highly recommended service for trying out the API in different ways. It supports sending required headers and has a simple and intuitive interface.
+
+To add your user credentials (required for CRUD-actions) to your headers with Postman, click the menu option "Basic Auth" and enter your credentials. Then click "Refresh headers", and a header will be generated in the following format:
+
+    Authorization       Basic Z3Vlc3Q6Z2VlcBQ=
+
+To add your API-key through Postman, just click on the top-right button called "Headers" and fill in:
+
+    X-AUTH-TOKEN       Token token="257b082c2d0c1c10ff34ee0ec6ad803d"
+
+NOTE! To perform CRUD-actions you will need to provide both a valid API-key and valid user credentials.
 
 ## Using the API
 
@@ -62,6 +74,40 @@ To get resource with id 3, you can simply write:
 .../resources/3
 
 ```
+
+This would generate the following response:
+
+        "resource": {
+        "self": "http://alx-toerh.herokuapp.com/api/v1/resources/3",
+        "created": "2014-02-28T08:51:43Z",
+        "info": {
+            "title": "labore magni",
+            "description": "corporis blanditiis ut sit voluptatem rerum",
+            "url": "http://jacobsmurray.biz/piper.white",
+            "resourceType": "video",
+            "licence": "CC"
+        },
+        "user": {
+            "name": "Laverne Runte",
+            "email": "maureen.kertzmann@pfannerstill.com",
+            "url": "http://alx-toerh.herokuapp.com/api/v1/users/3"
+        },
+        "tags": [
+            {
+                "tag": {
+                    "tagName": "expedita",
+                    "url": "http://alx-toerh.herokuapp.com/api/v1/tags/5"
+                }
+            },
+            {
+                "tag": {
+                    "tagName": "sit",
+                    "url": "http://alx-toerh.herokuapp.com/api/v1/tags/6"
+                }
+            }
+        ]
+    }
+
 
 To get all resources belonging to user with id 3 (and don't want to use filters), you can access the API through the users endpoint and add "resources" after the id:
 
@@ -153,7 +199,12 @@ To set an offset to your limited results just pass an offset parameter:
 
 ### Create or update - parameters
 
-The parameters that need to be included when creating (POST) or updating (PUT) a resource through the API are:
+NOTE! In order to send JSON-data with Postman it's recommended to manually set the Content-Type header:
+
+    Content-Type: application/json
+
+
+The parameters that need to be included when creating (POST) or updating (PUT) a RESOURCE through the API are:
 
 ```
 
@@ -167,7 +218,34 @@ The parameters that need to be included when creating (POST) or updating (PUT) a
 
 ```
 
-User:
+The format for creating or updating a resource with JSON would look like this:
+
+    {
+        "resource_type_id": 2,
+        "licence_id": 2,
+        "user_id": 1,
+        "name": "My brand new resource",
+        "description": "A description for my resource",
+        "url": "http://www.test.se",
+        "tag": [
+            "tag_one",
+            "tag_two"
+        ]
+    }
+
+You can also pass parameters as regular form-data in Postman according to the following format:
+
+    resource[resource_type_id]      2
+    resource[licence_id]            2
+    resource[user_id]               1
+    resource[name]                  My brand new resource
+    resource[description]           A description for my resource
+    resource[url]                   http://www.test.se
+    tag[]                           tag_one
+    tag[]                           tag_two
+
+
+Parameters available for USER are:
 
 ```
 
@@ -180,7 +258,7 @@ User:
 
 ```
 
-Tag:
+Parameters available for TAG are:
 
 ```
 
@@ -188,7 +266,7 @@ Tag:
 
 ```
 
-Licence:
+Parameters available for LICENCE are:
 
 ```
 

@@ -1,10 +1,6 @@
 module Api
   module V1
-    class LicencesController < ApplicationController
-      #before_filter :restrict_access
-      skip_before_filter :verify_authenticity_token
-      before_filter :http_basic_authenticate, :except => [:index, :show, :licence_resources]
-      respond_to :json, :xml
+    class LicencesController < ApiController
 
       def index
         @licences = Licence.all
@@ -58,21 +54,6 @@ module Api
 
       def licence_resources
         @resources = Licence.find_by_id(params[:id]).resources
-      end
-
-      private
-
-      def restrict_access
-        authenticate_or_request_with_http_token do |token, options|
-          ApiKey.exists?(access_token: token)
-        end
-      end
-
-      def http_basic_authenticate
-        authenticate_or_request_with_http_basic do |username, password|
-          @user = User.find_by_username(username)
-          @user.authenticate(password)
-        end
       end
 
     end

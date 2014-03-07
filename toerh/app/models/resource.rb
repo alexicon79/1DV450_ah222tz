@@ -28,5 +28,5 @@ class Resource < ActiveRecord::Base
   validates :url, presence: true
 
   validates :name, presence: true, length: { maximum: 60 }
-  validates :name, presence: true, length: { maximum: 255 }
+  validates :description, presence: true, length: { maximum: 255 }
 end

@@ -1,10 +1,6 @@
 module Api
   module V1
     class ResourcesController < FilteredResourcesController
-      before_filter :restrict_access #only allow requests with API-key
-      skip_before_filter :verify_authenticity_token
-      before_filter :http_basic_authenticate, :except => [:index, :show] #user auth to post, create, delete
-      respond_to :xml, :json
 
       def index
         apply_filters
@@ -77,19 +73,6 @@ module Api
             tag = Tag.create({tag_name: tag_name})
             @resource.tags << tag
           end
-        end
-      end
-
-      def restrict_access
-        authenticate_or_request_with_http_token do |token, options|
-          ApiKey.exists?(access_token: token)
-        end
-      end
-
-      def http_basic_authenticate
-        authenticate_or_request_with_http_basic do |username, password|
-          @user = User.find_by_username(username)
-          @user.authenticate(password)
         end
       end
 

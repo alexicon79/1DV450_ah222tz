@@ -11,12 +11,13 @@ code :info do |resource|
               :licence => resource.licence.licence_type.upcase
 end
 
-code :publisher do |resource|
+code :user do |resource|
   attributes  :name => resource.user.firstname + " " + resource.user.lastname,
               :email => resource.user.email,
-              :userId => resource.user.id
+              :url => polymorphic_url([:api, :v1, resource.user])
 end
 
 child :tags do |tag|
   node(:tagName) { |tag| tag.tag_name}
+  node(:url) { |tag| polymorphic_url([:api, :v1, tag])}
 end
