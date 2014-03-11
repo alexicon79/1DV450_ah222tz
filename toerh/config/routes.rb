@@ -21,13 +21,19 @@ Toerh::Application.routes.draw do
 
   match 'register' => 'applications#new'
 
-  controller :sessions do
-    get 'login' => :new
-    post 'login' => :create
-    delete 'logout' => :destroy
-  end
+  # controller :sessions do
+  #   get 'login' => :new
+  #   post 'login' => :create
+  #   delete 'logout' => :destroy
+  # end
 
   root :to => 'docs#index'
+
+  #OAuth
+  get "/auth/:provider/callback" => "sessions#create"
+  get "/signout" => "sessions#destroy", :as => :signout
+  get "/check" => "sessions#check"
+  get "/authenticate" => "sessions#authenticate"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
