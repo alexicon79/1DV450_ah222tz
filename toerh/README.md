@@ -49,7 +49,7 @@ To add your user credentials (required for CRUD-actions) to your headers with Po
 
 To add your API-key through Postman, just click on the top-right button called "Headers" and fill in:
 
-    X-AUTH-TOKEN       Token token="257b082c2d0c1c10ff34ee0ec6ad803d"
+    X-AUTH-TOKEN       257b082c2d0c1c10ff34ee0ec6ad803d
 
 NOTE! To perform CRUD-actions you will need to provide both a valid API-key and valid user credentials.
 
