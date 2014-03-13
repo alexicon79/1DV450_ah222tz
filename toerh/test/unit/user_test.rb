@@ -10,6 +10,11 @@
 #  email           :string(255)
 #  username        :string(255)
 #  password_digest :string(255)
+#  provider        :string(255)
+#  uid             :string(255)
+#  token           :string(255)
+#  auth_token      :string(255)
+#  token_expires   :datetime
 #
 
 require 'test_helper'
