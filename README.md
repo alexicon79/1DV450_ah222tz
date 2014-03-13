@@ -17,23 +17,23 @@ The API and its documentation is currently available at [http://alx-toerh.heroku
 ##LOCAL INSTALLATION
 
 Start out with:
-
+```
   bundle exec install
-
+```
 You will need to install a PostgreSQL database (for OS X users I can recommend [postgres.app](http://postgresapp.com/)) You can set the name of your database in config/database.yml
 
 Then migrate databases:
-
+```
   bundle exec rake db:migrate
-
+```
 Seed some data:
-
+```
   bundle exec rake db:seed
-
+```
 
 Start the server:
-
+```
   bundle exec rails server
-
+```
 
 Voila!
