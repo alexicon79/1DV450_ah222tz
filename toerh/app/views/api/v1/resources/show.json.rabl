@@ -1,5 +1,4 @@
 object @resource
-attributes :id
 
 node(:self) { |resource| polymorphic_url([:api, :v1, resource])}
 node(:created) { |resource| resource.created_at }
