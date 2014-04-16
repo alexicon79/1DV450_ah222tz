@@ -20,3 +20,17 @@ Make sure the API-server is running locally and that you have seeded fresh data 
 ```
 You can now access the application through http://localhost:8000/app/index.html
 
+
+##CHANGES TO THE API
+
+- The biggest changes to the API have been made in the user model. I no longer store passwords locally on the server, but use Github OAuth for this instead.
+
+- Authentication/authorization for users and applications/clients are now separate (APP-AUTH-TOKEN and USER-AUTH-TOKEN). Filters and validations for this have been customized.
+
+- Several minor tweaks have been made to the JSON-output that is rendered.
+
+- A new controller/endpoint for resource types has been added.
+
+- Some minor bugs (properly adding tags to a resource, for example) have been fixed.
+
+- Rack Middleware for handling Cross-Origin Resource Sharing (CORS) has been added.
