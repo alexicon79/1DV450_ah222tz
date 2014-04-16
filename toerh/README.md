@@ -20,7 +20,7 @@ Attach your API-key to the HTTP-header in this format:
 
 ```
 
-X-AUTH-TOKEN: 257b082c2d0c1c10ff34ee0ec6ad803d
+APP-AUTH-TOKEN: 257b082c2d0c1c10ff34ee0ec6ad803d
 
 ```
 
@@ -38,20 +38,6 @@ There is a demo user account if you want to try this out:
   Password: guest
 
 ```
-
-### Authorization through Postman
-
-Postman (Chrome plugin) is a highly recommended service for trying out the API in different ways. It supports sending required headers and has a simple and intuitive interface.
-
-To add your user credentials (required for CRUD-actions) to your headers with Postman, click the menu option "Basic Auth" and enter your credentials. Then click "Refresh headers", and a header will be generated in the following format:
-
-    Authorization       Basic Z3Vlc3Q6Z2VlcBQ=
-
-To add your API-key through Postman, just click on the top-right button called "Headers" and fill in:
-
-    X-AUTH-TOKEN       Token token="257b082c2d0c1c10ff34ee0ec6ad803d"
-
-NOTE! To perform CRUD-actions you will need to provide both a valid API-key and valid user credentials.
 
 ## Using the API
 
