@@ -6,20 +6,21 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+    app = Application.create(contact_email: "client@home.nu")
+    ApiKey.create({access_token: "19dc569a484de5286e3a7141b4ba8c6c", application_id: app.id})
 
     resource_type = ResourceType.create([{type_name: 'Image'}, {type_name: 'Video'}, {type_name: 'Article'}, {type_name: 'Blogpost'}, {type_name: 'Code'}])
     licence = Licence.create([{licence_type: 'CC'}, {licence_type: 'MIT'}, {licence_type: 'GNU'}])
-    admin = User.create({name: 'Alexander Hall', username: 'admin', email: 'admin@example.com', password: 'admin', password_confirmation: 'admin'})
-    demo_user = User.create({name: 'guest', username: 'guest', email: 'demo@example.com', password: 'guest', password_confirmation: 'guest'})
+    admin = User.create({name: 'Alexander Hall', username: 'admin', email: 'admin@example.com'})
+    demo_user = User.create({name: 'guest', username: 'guest', email: 'demo@example.com'})
 
   20.times do
     firstname = Faker::Name.first_name
     lastname = Faker::Name.last_name
     email = Faker::Internet.email
     username = Faker::Internet.user_name
-    password = "password"
 
-    user = User.create({name: firstname + " " + lastname, username: username, email: email, password: password, password_confirmation: password})
+    user = User.create({name: firstname + " " + lastname, username: username, email: email})
 
     type_id = rand(1..5)
     licence_id = rand(1..3)
