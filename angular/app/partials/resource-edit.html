@@ -1,0 +1,110 @@
+<div ng-if="isLoggedIn" class="content-wrapper">
+
+<h3>Edit resource</h3>
+<form ng-submit="updateResource()">
+  <div class="row">
+    <div class="small-10 medium-8 columns">
+      <label>Title:
+        <input type="text" ng-model="formData.name" placeholder="{{resource.info.title}}" required>
+      </label>
+      <label>Description:
+        <textarea ng-model="formData.description" placeholder="{{resource.info.description}}" required>{{resource.info.description}}</textarea></label>
+
+      <label>URL:
+        <input type="text" ng-model="formData.url" placeholder="{{resource.info.url}}" required>
+      </label>
+
+      <label>User:
+        <select ng-model="formData.user_id" ng-options="u.user.id as u.user.info.name for u in users"></select>
+      </label>
+
+      <label>Licence:
+        <select ng-model="formData.licence_id" ng-options="l.licence.id as l.licence.licenceName | uppercase for l in licences"></select>
+      </label>
+      <span class="edit-link right"><a href="" ng-click="editLicences()">Add licence</a></span>
+
+      <div class="panel edit-panel" ng-if="showLicences">
+        <div class="row">
+          <div class="medium-8 columns">
+            <div data-alert class="alert-box info radius" ng-if="message.length > 0">
+              {{message}}
+              <a href="" ng-click="hide()" class="close">&times;</a>
+            </div>
+            <input type="text" ng-model="licenceFormData.licence_type" required>
+          </div>
+          <div class="medium-4 columns">
+            <a class="button small login" href="" ng-click="createLicence()">Add</a>
+          </div>
+        </div>
+      </div>
+
+      <label>Type:
+        <select ng-model="formData.resource_type_id" ng-options="r.resource_type.id as r.resource_type.resourceType for r in resourceTypes"></select>
+      </label>
+      <span class="edit-link right"><a href="" ng-click="editResourceTypes()">Add resource type</a></span>
+
+      <div class="panel edit-panel" ng-if="showResourceTypes">
+        <div class="row">
+          <div class="medium-8 columns">
+            <div data-alert class="alert-box info radius" ng-if="message.length > 0">
+              {{message}}
+              <a href="" ng-click="hide()" class="close">&times;</a>
+            </div>
+            <input type="text" ng-model="resourceTypeFormData.type_name" required>
+          </div>
+          <div class="medium-4 columns">
+            <a class="button small login" href="" ng-click="createResourceType()">Add</a>
+          </div>
+        </div>
+      </div>
+
+
+      <label>Tags:</label>
+      <span class="tag" ng-repeat="tags in resourceTags">
+        {{tags.tag.tagName}}
+      </span>
+      <span class="edit-link"><a href="" ng-click="editTags()">Add tag</a></span>
+
+      <div class="panel edit-panel" ng-if="showTags">
+        <div class="row">
+          <div class="medium-8 columns">
+            <div data-alert class="alert-box info radius" ng-if="message.length > 0">
+              {{message}}
+              <a href="" ng-click="hide()" class="close">&times;</a>
+            </div>
+            <input type="text" ng-model="tagFormData.tag_name" required>
+          </div>
+          <div class="medium-4 columns">
+            <a class="button small login" href="" ng-click="createTag()">Add</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="small-2 medium-4 columns">
+    </div>
+  </div>
+  <br />
+  <button>Save</button>
+</form>
+
+<!-- <pre>
+{{formData.tag}}
+<br/><br/>
+{{resource}}
+<br/><br/>
+{{formData}}
+</pre> -->
+<!-- <p>{{names}}</p>
+
+<form>
+  <fieldset>
+    <legend>Fieldset Legend</legend>
+
+    <label>Input Label
+      <input type="text" placeholder="Inputs and other form elements go inside...">
+    </label>
+  </fieldset>
+</form>
+
+</div>

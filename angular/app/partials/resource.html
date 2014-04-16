@@ -1,0 +1,27 @@
+<div class="content-wrapper">
+
+<div data-alert class="alert-box info radius" ng-show="flash.getMessage()">
+  {{flash.getMessage()}}
+  <a href="#" class="close">« Back to resource list</a>
+</div>
+
+<ul class="resources">
+  <li class="resource-item-show">
+
+    <h2>{{resource.info.title}}</h2>
+    <p>{{resource.info.description}}</p>
+    <span class="label">RESOURCE TYPE:</span><em> {{resource.info.resourceType | uppercase }}</em><br/>
+    <span class="label">LICENCE:</span><em> {{resource.info.licence}}</em><br/>
+    <span class="label">USER:</span><em> {{resource.user.name}}</em><br/>
+    <span class="label">TAGS:</span>
+    <span class="tagList" ng-repeat="t in tags">
+      {{t.tag.tagName}}
+    </span>
+
+  </li>
+</ul>
+<div>
+  <button ng-if="isLoggedIn && valid" data-ng-click="editResource(resource.id);">Edit</button>
+</div>
+
+</div>

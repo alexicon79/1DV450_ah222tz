@@ -1,0 +1,35 @@
+<div ng-if="isLoggedIn" class="content-wrapper">
+
+<h3>New resource</h3>
+<form ng-submit="createResource()">
+  <div class="row">
+    <div class="large-6 columns">
+      <label>Title:
+        <input type="text" ng-model="formData.name" placeholder="Title" required>
+      </label>
+      <label>Description:
+        <textarea ng-model="formData.description" placeholder="Description" required></textarea></label>
+      <label>URL:
+        <input type="text" ng-model="formData.url" placeholder="http://myurl.com" required>
+      </label>
+      <label>Licence:
+        <select ng-model="formData.licence_id" ng-options="l.licence.id as l.licence.licenceName | uppercase for l in licences"></select><span><a href="">Edit licences</a></span>
+      </label>
+      <label>User:
+        <select ng-model="formData.user_id" ng-options="u.user.id as u.user.info.name for u in users"></select><span><a href="">Edit users</a></span>
+      </label>
+      <label>Type:
+        <select ng-model="formData.resource_type_id" ng-options="r.resource_type.id as r.resource_type.resourceType for r in resourceTypes"></select><span><a href="">Edit resource types</a></span>
+      </label>
+      Tags (separate with comma):
+        <input type="text" ng-model="formData.tag" ng-list ng-trim="true" placeholder="{{tags.tag.tagName}}">
+
+      <ul ng-repeat="tags in resourceTags">
+        <li>{{tags.tag.tagName}}</li>
+      </ul>
+
+    </div>
+  </div>
+
+  <button>Save</button>
+</form>

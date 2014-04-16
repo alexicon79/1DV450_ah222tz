@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en" data-ng-app="myApp">
+<head>
+  <meta charset="utf-8">
+  <title>TOERH CLIENT</title>
+  <link rel="stylesheet" href="css/vendor/foundation.min.css"/>
+  <link rel="stylesheet" href="css/app.css"/>
+</head>
+<body>
+  <div class="row menu">
+      <ul class="menu" data-ng-controller="AuthController">
+        <div class="small-7 large-7 columns">
+          <li><h4 class="caption"><a href="" ng-click="index()"><span>TOERH</span> RESOURCES</a></h4></li>
+        </div>
+      </ul>
+  </div>
+
+<div class="row content">
+  <div class="large-12 columns"
+    <div ng-view></div>
+  </div>
+</div>
+
+  <!-- In production use:
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+  -->
+  <script src="lib/angular/angular.js"></script>
+  <script src="lib/angular/angular-route.js"></script>
+  <script src="lib/angular/angular-cookies.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/services.js"></script>
+  <script src="js/controllers.js"></script>
+  <script src="js/filters.js"></script>
+  <script src="js/directives.js"></script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<div data-alert class="alert-box info radius" ng-show="flash.getMessage()">
+  {{flash.getMessage()}}
+  <a href="#" class="close">&times;</a>
+</div>
+
+<div class="row">
+  <div class="right small-6 medium-6 columns">
+      <div data-ng-if="isLoggedIn" class="name right">Logged in as {{userName}} </div>
+  </div>
+</div>
+<div class="row">
+  <div class="small-4 medium-6 columns">
+    <input class="search-field" type="text" ng-model="resourceFilter" placeholder="Search [by title, name or type...]"/>
+  </div>
+  <div class="right small-3 medium-2 columns">
+      <a href="" class="button small login" data-ng-if="!isLoggedIn || !valid" data-ng-click="login()">Login</a>
+      <a href="" class="button small logout" data-ng-if="isLoggedIn" data-ng-click="logout()">Logout</a>
+  </div>
+  <div class="right small-3 medium-2 columns">
+      <a href="" class="button small login add" data-ng-if="isLoggedIn" data-ng-click="newResource()">+</a>
+  </div>
+</div>
+<div class="row">
+  <div class="small-4 medium-2 columns">
+    <label class="filter">
+      <select ng-model="value" ng-options="r.resource_type.resourceType as r.resource_type.resourceType for r in resourceTypes" ng-change='filterByType(value)'><option value="">filter by type</option></select>
+    </label>
+  </div>
+  <div class="small-4 medium-2 columns">
+    <label class="filter">
+      <select ng-model="licenceValue" ng-options="l.licence.licenceName as l.licence.licenceName for l in licences" ng-change='filterByLicence(licenceValue)'><option value="">filter by licence</option></select>
+    </label>
+  </div>
+  <div class="small-4 medium-2 columns end">
+    <label class="filter">
+      <select ng-model="userValue" ng-options="u.user.id as u.user.info.name for u in users" ng-change='filterByUser(userValue)'><option value="">filter by user</option></select>
+    </label>
+  </div>
+</div>
+<div class="row">
+  <div class="medium-6 columns">
+    <ul class="pagination clear" ng-if="resources.length > 7">
+    <li custom-pagination ng-repeat="n in [] | range:pages">
+      <a href="" ng-click="showNextSet(this)">{{$index+1}}</a></li>
+    </ul>
+    <a class="pagination-link" href="" data-ng-click="showAll()">Show all</a>
+  </div>
+</div>
+
+  <ul class="resources">
+      <li class="resource-item" data-ng-repeat="data in resources | filter: searchFilter">
+      <a ng-click="showResource(data.resource.id)">
+        <h6>{{data.resource.info.resourceType}}</h6>
+        <h2>{{data.resource.info.title}}</h2>
+        <p>{{data.resource.info.description}}</p>
+        <small><em>{{data.resource.user.name}}</em></small>
+        <a href="" class="button small inline" data-ng-if="isLoggedIn && valid" data-ng-click="editResource(data.resource.id)">Edit</a>
+        <a href="" class="button small inline delete" data-ng-if="isLoggedIn && valid" data-ng-click="deleteResource(data.resource.id, $event)">Delete</a>
+      </li>
+  </ul>
+

@@ -1,0 +1,252 @@
+/* app css stylesheet */
+
+
+body {
+  font-family: "Helvetica";
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: #182629;
+}
+
+button {
+  background-color: #a44567;
+}
+
+h2 {
+  font-size: 1.6em;
+}
+
+h4.caption {
+  margin-top: 4px;
+  font-size: 1.8em;
+  padding-top: 0;
+  margin-bottom: -10px;
+font-style: italic;
+}
+
+h4.caption span {
+  font-family: "Georgia";
+  text-transform: lowercase;
+  font-size: 3em;
+  letter-spacing: -0.04em;
+  margin-right: 0.2rem;
+}
+
+ul.resources {
+  width: 100%;
+  margin-top: 10px;
+}
+
+li {
+  list-style: none;
+}
+
+select {
+  font-size: 10px;
+}
+/*div.menu {
+  list-style: none;
+  height: 4em;
+  padding: 0;
+  background-color: #fff;
+  z-index: 10;
+}*/
+
+.menu {
+  margin-top: 10px;
+}
+
+.menu a.button {
+  float: right;
+  opacity: 0.8;
+}
+
+.menu li a {
+  text-decoration: none;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+.menu > li {
+  display: inline;
+  padding: 0;
+}
+
+div.content {
+  padding-top: 14px;
+  background-color: #f8fafa;
+}
+
+
+input.search-field {
+}
+
+::-webkit-input-placeholder {
+   color: #666;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: #666;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: #666;
+}
+
+:-ms-input-placeholder {
+   color: #666;
+}
+
+input.search-field:focus {
+  background-color: #ddf1f7;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  color: white;
+}
+
+li.resource-item, li.resource-item-show {
+  clear: right;
+  padding: 10px;
+  margin-bottom: 14px;
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-top: 3px solid #eee;
+}
+
+li.resource-item:hover {
+  background-color: #eeeeed;
+}
+
+li.resource-item a{
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+li.resource-item h2 {
+  margin: 0;
+}
+
+li.resource-item h6 {
+  position: relative;
+  float: right;
+  margin: 0;
+  padding: 4px 8px;
+  background-color: #e1e9e9;
+  display: inline-block;
+  font-size: 1em;
+}
+
+.menu small {
+  padding-top: 13px;
+  display: block;
+  text-align: right;
+}
+
+.alert-box.info {
+  margin-top: 15px;
+}
+
+.alert-box .close {
+  line-height: 0;
+  position: absolute;
+  top: 55%;
+  right: 0.25rem;
+  color: #333;
+  opacity: 0.9;
+  font-size: 0.7rem;
+}
+
+.button.small.logout, .button.small.inline.delete {
+  background-color: #a44567;
+}
+
+.button.small.login, .button.small.logout {
+  padding-top: 0.7rem;
+  padding-bottom: 0.7rem;
+  width: 100%;
+}
+
+.button.small.login.add {
+  background-color: #71ac94;
+}
+
+.button.small.inline {
+  width: 20%;
+  display: inline-block;
+  background-color: #a4bab1;
+}
+
+.name {
+  font-size: 9px;
+  font-style: italic;
+  margin-top: -42px;
+}
+
+.padding {
+  margin-top: 13px;
+}
+
+label.filter span{
+  font-style: italic;
+  display: block;
+  text-align: center;
+}
+
+label.filter select {
+  margin-bottom: 1px;
+}
+
+ul.pagination {
+  height: 0;
+  margin-top: 30px;
+}
+
+.pagination-link {
+  line-height: 24px;
+  margin-left: 16px;
+}
+
+.tag {
+  display: inline-block;
+  background-color: #eee;
+  padding: 8px;
+  margin-right: 4px;
+  border-radius: 3px;
+}
+
+.tagList {
+  display: inline-block;
+  background-color: #fee;
+  padding: 2px 8px;
+  margin: 0 0 0 4px;
+  border-radius: 3px;
+  font-size: 12px;
+  position: relative;
+  top: -2px;
+}
+
+.edit-link {
+  font-size: 12px;
+  margin-top: -10px;
+}
+
+.label {
+  line-height: 14px;
+  padding-bottom: 3px;
+  top: -1px;
+  background-color: #e1e9e9;
+  color: #000;
+}
+
+li.resource-item em {
+  font-size: 13px;
+}
