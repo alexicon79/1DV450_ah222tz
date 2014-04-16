@@ -12,7 +12,7 @@ module Api
             render :status => 404
           end
         else
-          @resources = Resource.all
+          @resources = Resource.order("id ASC")
         end
       end
 
@@ -44,6 +44,7 @@ module Api
 
       def update
         @resource = Resource.find_by_id(params[:id])
+        append_tags
         respond_to do |format|
           if @resource.update_attributes(params[:resource])
             format.json { render json: "resource has been updated", status: 200 }
@@ -70,8 +71,12 @@ module Api
         tags = params[:tag]
         if tags
           tags.each do |tag_name|
-            tag = Tag.create({tag_name: tag_name})
-            @resource.tags << tag
+
+            unless Tag.exists?(tag_name: tag_name)
+              tag = Tag.create({tag_name: tag_name})
+              @resource.tags << tag
+            end
+
           end
         end
       end

@@ -3,7 +3,7 @@ module Api
     class UsersController < ApiController
 
       def index
-        @users = User.all
+        @users = User.order('id ASC')
       end
 
       def show

@@ -1,4 +1,5 @@
 object @resource
+attributes :id
 
 node(:self) { |resource| polymorphic_url([:api, :v1, resource])}
 node(:created) { |resource| resource.created_at }
@@ -8,11 +9,15 @@ code :info do |resource|
               :description => resource.description,
               :url => resource.url,
               :resourceType => resource.resource_type.type_name,
-              :licence => resource.licence.licence_type.upcase
+              :resourceTypeId => resource.resource_type.id,
+              :licence => resource.licence.licence_type.upcase,
+              :licenceId => resource.licence.id
 end
 
 code :user do |resource|
-  attributes  :name => resource.user.firstname + " " + resource.user.lastname,
+  attributes  :id => resource.user.id,
+              :name => resource.user.name,
+              :userName => resource.user.username,
               :email => resource.user.email,
               :url => polymorphic_url([:api, :v1, resource.user])
 end

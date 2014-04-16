@@ -3,7 +3,7 @@ module Api
     class TagsController < ApiController
 
       def index
-        @tags = Tag.all
+        @tags = Tag.order('id ASC')
       end
 
       def show

@@ -9,8 +9,8 @@
 
     resource_type = ResourceType.create([{type_name: 'Image'}, {type_name: 'Video'}, {type_name: 'Article'}, {type_name: 'Blogpost'}, {type_name: 'Code'}])
     licence = Licence.create([{licence_type: 'CC'}, {licence_type: 'MIT'}, {licence_type: 'GNU'}])
-    admin = User.create({firstname: 'Alexander', lastname: 'Hall', username: 'admin', email: 'admin@example.com', password: 'admin', password_confirmation: 'admin'})
-    demo_user = User.create({firstname: 'guest', lastname: 'guest', username: 'guest', email: 'demo@example.com', password: 'guest', password_confirmation: 'guest'})
+    admin = User.create({name: 'Alexander Hall', username: 'admin', email: 'admin@example.com', password: 'admin', password_confirmation: 'admin'})
+    demo_user = User.create({name: 'guest', username: 'guest', email: 'demo@example.com', password: 'guest', password_confirmation: 'guest'})
 
   20.times do
     firstname = Faker::Name.first_name
@@ -19,7 +19,7 @@
     username = Faker::Internet.user_name
     password = "password"
 
-    user = User.create({firstname: firstname, lastname: lastname, username: username, email: email, password: password, password_confirmation: password})
+    user = User.create({name: firstname + " " + lastname, username: username, email: email, password: password, password_confirmation: password})
 
     type_id = rand(1..5)
     licence_id = rand(1..3)

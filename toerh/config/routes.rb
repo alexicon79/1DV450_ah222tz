@@ -6,10 +6,12 @@ Toerh::Application.routes.draw do
       resources :users
       resources :tags
       resources :licences
+      resources :resource_types
 
       match 'tags/:id/resources' => 'tags#tag_resources'
       match 'users/:id/resources' => 'users#user_resources'
       match 'licences/:id/resources' => 'licences#licence_resources'
+      match 'resource_types/:id/resources' => 'resource_types#resource_type_resources'
 
       root :to => 'resources#index'
     end
@@ -21,13 +23,19 @@ Toerh::Application.routes.draw do
 
   match 'register' => 'applications#new'
 
-  controller :sessions do
-    get 'login' => :new
-    post 'login' => :create
-    delete 'logout' => :destroy
-  end
+  # controller :sessions do
+  #   get 'login' => :new
+  #   post 'login' => :create
+  #   delete 'logout' => :destroy
+  # end
 
   root :to => 'docs#index'
+
+  #OAuth
+  get "/auth/:provider/callback" => "sessions#create"
+  get "/signout" => "sessions#destroy", :as => :signout
+  get "/check" => "sessions#check"
+  get "/authenticate" => "sessions#authenticate"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

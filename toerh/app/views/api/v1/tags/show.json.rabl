@@ -1,4 +1,5 @@
 object @tag
+attributes :id
 
 node(:self) { |tag| polymorphic_url([:api, :v1, tag])}
 node(:created) { |tag| tag.created_at }

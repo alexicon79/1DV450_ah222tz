@@ -3,7 +3,7 @@ module Api
     class LicencesController < ApiController
 
       def index
-        @licences = Licence.all
+        @licences = Licence.order('id ASC')
       end
 
       def show

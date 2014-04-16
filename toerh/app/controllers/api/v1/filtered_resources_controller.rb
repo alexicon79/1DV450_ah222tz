@@ -32,10 +32,10 @@ module Api
 
       def get_filtered_resources
         @param_count = params.except(:offset, :limit, :action, :format, :controller).length
-        temp_resources = Resource.all
+        temp_resources = Resource.order("id ASC")
 
         if @@all
-          temp_resources = Resource.all
+          temp_resources = Resource.order("id ASC")
           @@all = false
         end
 
@@ -121,7 +121,7 @@ module Api
       end
 
       def get_all_resources
-        return Resource.all
+        return Resource.order("id ASC")
       end
 
       def filters_are_set
