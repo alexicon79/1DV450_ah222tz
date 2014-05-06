@@ -23,7 +23,7 @@
 <div class="row">
   <div class="small-4 medium-2 columns">
     <label class="filter">
-      <select ng-model="value" ng-options="r.resource_type.resourceType as r.resource_type.resourceType for r in resourceTypes" ng-change='filterByType(value)'><option value="">filter by type</option></select>
+      <select ng-model="typeValue" ng-options="r.resource_type.resourceType as r.resource_type.resourceType for r in resourceTypes" ng-change='filterByType(typeValue)'><option value="">filter by type</option></select>
     </label>
   </div>
   <div class="small-4 medium-2 columns">

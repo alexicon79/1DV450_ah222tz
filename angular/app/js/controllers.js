@@ -79,16 +79,35 @@ angular.module('myApp.controllers', [])
        $scope.licences = response;
     });
 
+    var filter = "";
 
     $scope.filterByType = function(value) {
-      var filter = "?filter=true&type=" + value;
+      $scope.licenceValue = "";
+      $scope.userValue = "";
+
+      filter = "?filter=true&type=" + value;
+
+      if (value === null) {
+        filter = "";
+      }
+
+      console.log(filter);
+
       toerhAPIservice.getFiltered(toerh.resources, filter).success(function (response) {
         $scope.resources = response;
       });
     };
 
     $scope.filterByUser = function(value) {
-      var filter = "?filter=true&user=" + value;
+      $scope.typeValue = "";
+      $scope.licenceValue = "";
+
+      filter = "?filter=true&user=" + value;
+
+      if (value === null) {
+        filter = "";
+      }
+
       toerhAPIservice.getFiltered(toerh.resources, filter).success(function (response) {
         $scope.resources = response;
       });
@@ -96,7 +115,15 @@ angular.module('myApp.controllers', [])
 
 
     $scope.filterByLicence = function(value) {
-      var filter = "?filter=true&licence=" + value;
+      $scope.typeValue = "";
+      $scope.userValue = "";
+
+      filter = "?filter=true&licence=" + value;
+
+      if (value === null) {
+        filter = "";
+      }
+
       toerhAPIservice.getFiltered(toerh.resources, filter).success(function (response) {
         $scope.resources = response;
       });
